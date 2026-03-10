@@ -1,8 +1,6 @@
 content:
-  - Theory
+  - Custom threads
   - Writing a thread for printing numbers
-  - The order of lines
-  - Statements about starting threads
   - Message notifier as a thread
   - Starting threads
   - Multiple threads

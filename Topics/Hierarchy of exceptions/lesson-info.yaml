@@ -1,5 +1,3 @@
 content:
-  - Theory
-  - Unchecked exceptions
-  - Subclasses of Exception
+  - Hierarchy of exceptions
   - BadRequestException
