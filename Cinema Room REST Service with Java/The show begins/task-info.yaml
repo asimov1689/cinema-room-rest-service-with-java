@@ -7,7 +7,6 @@ files:
     visible: true
     learner_created: false
   - name: test/CinemaTests.java
-    visible: false
     learner_created: false
   - name: build.gradle
     visible: true

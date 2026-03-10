@@ -13,7 +13,6 @@ files:
     visible: true
     learner_created: false
   - name: test/CinemaTests.java
-    visible: false
     learner_created: false
 feedback_link: https://hyperskill.org/projects/189/stages/948/implement#comment
 status: Unchecked

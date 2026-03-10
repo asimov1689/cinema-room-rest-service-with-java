@@ -1,9 +1,6 @@
 content:
-  - Theory
-  - Parts of code
+  - Lambda expressions
   - Max of two integers
-  - Statements
-  - Higher-order functions
   - Next even number
   - Creating a closure
   - Production of all numbers in the range
