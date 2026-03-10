@@ -4,21 +4,17 @@ subprojects {
     apply plugin: 'application'
     apply plugin: 'java'
 
-    def userJava = Integer.parseInt(JavaVersion.current().getMajorVersion())
-    def hsJava = Integer.parseInt(hs.java.version)
-    def testJava = Math.max(userJava, hsJava)
-
-    java.toolchain.languageVersion = JavaLanguageVersion.of(testJava)
+    java.toolchain.languageVersion = JavaLanguageVersion.of(23)
 
     compileJava {
         javaCompiler = javaToolchains.compilerFor {
-            languageVersion = JavaLanguageVersion.of(userJava)
+            languageVersion = JavaLanguageVersion.of(23)
         }
     }
 
     compileTestJava {
         javaCompiler = javaToolchains.compilerFor {
-            languageVersion = JavaLanguageVersion.of(testJava)
+            languageVersion = JavaLanguageVersion.of(23)
         }
     }
 
@@ -29,6 +25,8 @@ subprojects {
     }
 
     dependencies {
+        implementation 'org.springframework.boot:spring-boot-starter-web:3.4.3'
+        testImplementation 'org.springframework.boot:spring-boot-starter-test:3.4.3'
         testImplementation 'com.github.hyperskill:hs-test:release-SNAPSHOT'
     }
 
@@ -42,6 +40,7 @@ subprojects {
     }
 
     test {
+        useJUnitPlatform()
         systemProperty "file.encoding", "utf-8"
         outputs.upToDateWhen { false }
     }
