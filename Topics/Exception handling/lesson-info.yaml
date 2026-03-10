@@ -1,7 +1,3 @@
 content:
-  - Theory
-  - Handling division by zero exception
-  - Handling exceptions in division operations
+  - Exception handling
   - String to double conversion
-  - Method named process
-  - Determine a block for handling exceptions

@@ -1,8 +1,4 @@
 content:
-  - Theory
-  - The implementation of threads
-  - Getting a current thread
-  - Find min and max priorities
-  - Thread Basics  Birth   Life
+  - Threads as objects
   - Is thread daemon
   - Thread name
