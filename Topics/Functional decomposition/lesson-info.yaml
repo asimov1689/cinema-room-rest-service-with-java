@@ -1,12 +1,6 @@
 content:
-  - Theory
+  - Functional decomposition
   - Math wizardry in your pocket
-  - Determining the number of days in a month
-  - Decomposing switch cases in Java
-  - Why decompose a program
-  - How to decompose correctly
-  - The main tools of functional decomposition
-  - A quadratic equation
   - Calculator with four methods
   - Method createFullName
   - Kate's math function

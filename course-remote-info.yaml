@@ -3,7 +3,7 @@ hyperskill_project:
   ide_files: https://hyperskill.org/api/projects/189/additional-files/additional_files.json
   is_template_based: false
   use_ide: true
-update_date: "Wed, 03 Sep 2025 13:56:57 UTC"
+update_date: "Tue, 10 Mar 2026 20:22:29 UTC"
 stages:
   - id: 945
     step: 13375
@@ -85,7 +85,7 @@ topics:
       theory_id: 3518
     - title: Comments
       theory_id: 3520
-    - title: Reading user's input with Scanner
+    - title: Reading user input with Scanner
       theory_id: 9055
     - title: Coding style conventions
       theory_id: 12411
@@ -151,10 +151,12 @@ topics:
       theory_id: 1945
     - title: What is object-oriented programming
       theory_id: 3614
-    - title: Build tools
-      theory_id: 4284
+    - title: Introduction to Linux
+      theory_id: 9526
     - title: JAR files
       theory_id: 4311
+    - title: Build tools
+      theory_id: 4284
     - title: "Gradle: overview"
       theory_id: 5075
     - title: Basic project with Gradle
@@ -165,8 +167,6 @@ topics:
       theory_id: 35988
     - title: "Dependency management: repositories"
       theory_id: 37189
-    - title: External information resources
-      theory_id: 6216
     - title: Introduction to full-stack development
       theory_id: 13931
     - title: Libraries
@@ -197,24 +197,24 @@ topics:
       theory_id: 21478
     - title: Multidimensional array
       theory_id: 1933
-    - title: Debugging overview
-      theory_id: 14368
-    - title: JSON
-      theory_id: 6854
     - title: Introduction to API
       theory_id: 17007
+    - title: JSON
+      theory_id: 6854
     - title: IntelliJ IDEA
       theory_id: 37202
+    - title: Getting data from REST
+      theory_id: 13287
+    - title: Debugging overview
+      theory_id: 14368
     - title: Run and debug with IntelliJ IDEA
       theory_id: 37206
+    - title: IntelliJ IDEA run configurations
+      theory_id: 10630
     - title: Debugging simple constructs
       theory_id: 16479
     - title: Debugging methods
       theory_id: 52095
-    - title: IntelliJ IDEA run configurations
-      theory_id: 10630
-    - title: Getting data from REST
-      theory_id: 13287
     - title: Introduction to generic programming
       theory_id: 3492
     - title: Generics and Object

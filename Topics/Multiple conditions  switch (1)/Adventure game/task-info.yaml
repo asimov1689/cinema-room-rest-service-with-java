@@ -1,4 +1,4 @@
-type: unsupported
+type: code
 files:
   - name: src/Task.java
     visible: true

@@ -1,11 +1,5 @@
 content:
-  - Theory
-  - Fixing the 'findEvenOrOdd' method logic
-  - Finalizing a greeting message function
-  - Syntactically correct declarations
-  - Method signature
-  - Choose a return type
-  - The elements of a method
+  - Declaring methods
   - Vowel or not
   - Sum of numbers in the range
   - Find the max of three numbers
