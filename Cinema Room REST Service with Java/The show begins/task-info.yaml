@@ -1,6 +1,6 @@
 type: edu
 files:
-  - name: src/cinema/Main.java
+  - name: src/cinema/CinemaRoomRestServiceApplication.java
     visible: true
     learner_created: false
   - name: src/resources/application.properties
@@ -11,6 +11,27 @@ files:
   - name: build.gradle
     visible: true
     learner_created: false
+  - name: src/cinema/dto/SeatDto.java
+    visible: true
+    learner_created: true
+  - name: src/cinema/dto/SeatsResponseDto.java
+    visible: true
+    learner_created: true
+  - name: src/cinema/service/CinemaService.java
+    visible: true
+    learner_created: true
+  - name: src/cinema/controller/CinemaController.java
+    visible: true
+    learner_created: true
+  - name: test/service/CinemaServiceTest.java
+    visible: true
+    learner_created: true
+  - name: test/controller/CinemaControllerTest.java
+    visible: true
+    learner_created: true
 feedback_link: https://hyperskill.org/projects/189/stages/945/implement#comment
 status: Solved
-record: 1
+feedback:
+  message: Congratulations!
+  time: "Tue, 10 Mar 2026 20:48:25 UTC"
+record: -1
