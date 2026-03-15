@@ -119,4 +119,49 @@ class CinemaControllerTest {
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.error").value("The number of a row or a column is out of bounds!"));
     }
+
+    @Test
+    void shouldReturnTicketSuccessfully() throws Exception {
+        // Arrange
+        String purchaseRequest = """
+                {
+                  "row": 1,
+                  "column": 1
+                }
+                """;
+
+        String response = mockMvc.perform(post("/purchase")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(purchaseRequest))
+                .andReturn().getResponse().getContentAsString();
+
+        String token = response.substring(response.indexOf("\"token\":\"") + 9, response.indexOf("\",\"ticket\""));
+
+        String returnRequest = String.format("{\"token\":\"%s\"}", token);
+
+        // Act + Assert
+        mockMvc.perform(post("/return")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(returnRequest))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.ticket.row").value(1))
+                .andExpect(jsonPath("$.ticket.column").value(1));
+    }
+
+    @Test
+    void shouldReturnBadRequestWhenTokenIsWrong() throws Exception {
+        // Arrange
+        String returnRequest = """
+                {
+                  "token": "00000000-0000-0000-0000-000000000000"
+                }
+                """;
+
+        // Act + Assert
+        mockMvc.perform(post("/return")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(returnRequest))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.error").value("Wrong token!"));
+    }
 }
