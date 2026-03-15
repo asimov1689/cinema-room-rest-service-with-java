@@ -1,8 +1,5 @@
 type: edu
 files:
-  - name: src/cinema/Main.java
-    visible: true
-    learner_created: false
   - name: src/resources/application.properties
     visible: true
     learner_created: false
@@ -13,6 +10,12 @@ files:
     visible: true
     learner_created: false
   - name: src/cinema/Seat.java
+    visible: true
+    learner_created: true
+  - name: src/cinema/dto/TicketResponseDto.java
+    visible: true
+    learner_created: true
+  - name: src/cinema/dto/ReturnRequestDto.java
     visible: true
     learner_created: true
 feedback_link: https://hyperskill.org/learn/step/13377#comment

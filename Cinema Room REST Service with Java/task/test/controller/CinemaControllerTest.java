@@ -56,9 +56,10 @@ class CinemaControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(requestBody))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.row").value(3))
-                .andExpect(jsonPath("$.column").value(4))
-                .andExpect(jsonPath("$.price").value(10));
+                .andExpect(jsonPath("$.token").exists())
+                .andExpect(jsonPath("$.ticket.row").value(3))
+                .andExpect(jsonPath("$.ticket.column").value(4))
+                .andExpect(jsonPath("$.ticket.price").value(10));
     }
 
     @Test
