@@ -1,8 +1,5 @@
 type: edu
 files:
-  - name: src/cinema/Main.java
-    visible: true
-    learner_created: false
   - name: src/resources/application.properties
     visible: true
     learner_created: false
@@ -14,6 +11,22 @@ files:
     learner_created: false
   - name: test/CinemaTests.java
     learner_created: false
+  - name: src/cinema/dto/StatsResponseDto.java
+    visible: true
+    learner_created: true
+  - name: src/cinema/controller/CinemaExceptionHandler.java
+    visible: true
+    learner_created: true
+  - name: src/cinema/dto/TicketResponseDto.java
+    visible: true
+    learner_created: true
+  - name: src/cinema/dto/ReturnRequestDto.java
+    visible: true
+    learner_created: true
 feedback_link: https://hyperskill.org/projects/189/stages/948/implement#comment
-status: Unchecked
+status: Solved
+feedback:
+  message: Well done! You've finished the project. Select a new project on <a href="https://hyperskill.org/projects">Hyperskill</a>
+    to continue learning.
+  time: "Sun, 15 Mar 2026 20:53:17 UTC"
 record: -1
