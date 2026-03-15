@@ -9,21 +9,24 @@ files:
   - name: test/CinemaTests.java
     visible: true
     learner_created: false
+  - name: src/cinema/Seat.java
+    visible: true
+    learner_created: true
   - name: src/cinema/dto/ReturnRequestDto.java
     visible: true
     learner_created: true
   - name: src/cinema/dto/TicketResponseDto.java
     visible: true
     learner_created: true
-  - name: src/cinema/Seat.java
+  - name: src/cinema/dto/StatsResponseDto.java
     visible: true
     learner_created: true
-  - name: src/cinema/dto/StatisticsResponseDto.java
+  - name: src/cinema/controller/CinemaExceptionHandler.java
     visible: true
     learner_created: true
 feedback_link: https://hyperskill.org/learn/step/13377#comment
 status: Solved
 feedback:
   message: Congratulations!
-  time: "Sat, 15 Feb 2025 13:23:13 UTC"
+  time: "Sun, 15 Mar 2026 20:52:54 UTC"
 record: -1

@@ -1,18 +1,15 @@
 package cinema.controller;
 
-import cinema.dto.ErrorResponseDto;
 import cinema.dto.PurchaseRequestDto;
 import cinema.dto.ReturnRequestDto;
-import cinema.dto.SeatDto;
 import cinema.dto.SeatsResponseDto;
+import cinema.dto.StatsResponseDto;
 import cinema.dto.TicketResponseDto;
 import cinema.service.CinemaService;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
@@ -37,12 +34,12 @@ public class CinemaController {
     }
 
     @PostMapping("/return")
-    public Map<String, SeatDto> returnTicket(@RequestBody ReturnRequestDto request) {
+    public Map<String, ?> returnTicket(@RequestBody ReturnRequestDto request) {
         return cinemaService.returnTicket(request);
     }
 
-    @ExceptionHandler(IllegalArgumentException.class)
-    public ResponseEntity<ErrorResponseDto> handleIllegalArgumentException(IllegalArgumentException e) {
-        return new ResponseEntity<>(new ErrorResponseDto(e.getMessage()), HttpStatus.BAD_REQUEST);
+    @GetMapping("/stats")
+    public StatsResponseDto getStats(@RequestParam(required = false) String password) {
+        return cinemaService.getStats(password);
     }
 }
