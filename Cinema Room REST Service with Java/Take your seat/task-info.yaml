@@ -18,9 +18,6 @@ files:
   - name: src/cinema/RetrieveAllSeats.java
     visible: true
     learner_created: true
-  - name: src/cinema/Seat.java
-    visible: true
-    learner_created: true
   - name: src/cinema/CinemaRoomRestServiceApplication.java
     visible: true
     learner_created: true
@@ -67,5 +64,5 @@ feedback_link: https://hyperskill.org/projects/189/stages/946/implement#comment
 status: Solved
 feedback:
   message: Congratulations!
-  time: "Sat, 14 Mar 2026 19:57:10 UTC"
+  time: "Sun, 15 Mar 2026 11:48:14 UTC"
 record: -1

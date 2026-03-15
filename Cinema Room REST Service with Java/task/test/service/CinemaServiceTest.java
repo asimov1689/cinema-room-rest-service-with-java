@@ -3,6 +3,7 @@ package cinema.service;
 import cinema.dto.PurchaseRequestDto;
 import cinema.dto.SeatDto;
 import cinema.dto.SeatsResponseDto;
+import cinema.dto.TicketResponseDto;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -65,12 +66,12 @@ class CinemaServiceTest {
         PurchaseRequestDto request = new PurchaseRequestDto(3, 4);
 
         // Act
-        SeatDto purchasedSeat = cinemaService.purchaseTicket(request);
+        TicketResponseDto response = cinemaService.purchaseTicket(request);
 
         // Assert
-        assertEquals(3, purchasedSeat.getRow());
-        assertEquals(4, purchasedSeat.getColumn());
-        assertEquals(10, purchasedSeat.getPrice());
+        assertEquals(3, response.getTicket().getRow());
+        assertEquals(4, response.getTicket().getColumn());
+        assertEquals(10, response.getTicket().getPrice());
         assertEquals(80, cinemaService.getSeats().getSeats().size());
     }
 
