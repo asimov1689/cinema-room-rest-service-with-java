@@ -1,8 +1,5 @@
 type: edu
 files:
-  - name: src/cinema/Main.java
-    visible: true
-    learner_created: false
   - name: src/resources/application.properties
     visible: true
     learner_created: false
@@ -10,6 +7,7 @@ files:
     visible: true
     learner_created: false
   - name: test/CinemaTests.java
+    visible: true
     learner_created: false
   - name: src/cinema/Seats.java
     visible: true
@@ -20,6 +18,54 @@ files:
   - name: src/cinema/RetrieveAllSeats.java
     visible: true
     learner_created: true
+  - name: src/cinema/Seat.java
+    visible: true
+    learner_created: true
+  - name: src/cinema/CinemaRoomRestServiceApplication.java
+    visible: true
+    learner_created: true
+  - name: src/cinema/dto/SeatDto.java
+    visible: true
+    learner_created: true
+  - name: src/cinema/dto/SeatsResponseDto.java
+    visible: true
+    learner_created: true
+  - name: src/cinema/service/CinemaService.java
+    visible: true
+    learner_created: true
+  - name: src/cinema/controller/CinemaController.java
+    visible: true
+    learner_created: true
+  - name: test/service/CinemaServiceTest.java
+    visible: true
+    learner_created: true
+  - name: test/controller/CinemaControllerTest.java
+    visible: true
+    learner_created: true
+  - name: src/PurchaseOrder.java
+    visible: true
+    learner_created: true
+  - name: src/Greeter.java
+    visible: true
+    learner_created: true
+  - name: src/StepDemo.java
+    visible: true
+    learner_created: true
+  - name: src/Caller.java
+    visible: true
+    learner_created: true
+  - name: src/Responder.java
+    visible: true
+    learner_created: true
+  - name: src/cinema/dto/PurchaseRequestDto.java
+    visible: true
+    learner_created: true
+  - name: src/cinema/dto/ErrorResponseDto.java
+    visible: true
+    learner_created: true
 feedback_link: https://hyperskill.org/projects/189/stages/946/implement#comment
 status: Solved
+feedback:
+  message: Congratulations!
+  time: "Sat, 14 Mar 2026 19:57:10 UTC"
 record: -1
