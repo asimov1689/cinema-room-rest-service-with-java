@@ -1,5 +1,6 @@
 package cinema.service;
 
+import cinema.dto.PurchaseRequestDto;
 import cinema.dto.SeatDto;
 import cinema.dto.SeatsResponseDto;
 import org.junit.jupiter.api.Test;
@@ -7,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class CinemaServiceTest {
 
@@ -28,9 +30,11 @@ class CinemaServiceTest {
 
         assertEquals(1, seats.get(0).getRow());
         assertEquals(1, seats.get(0).getColumn());
+        assertEquals(10, seats.get(0).getPrice());
 
         assertEquals(9, seats.get(seats.size() - 1).getRow());
         assertEquals(9, seats.get(seats.size() - 1).getColumn());
+        assertEquals(8, seats.get(seats.size() - 1).getPrice());
     }
 
     @Test
@@ -53,5 +57,66 @@ class CinemaServiceTest {
 
         assertEquals(2, seats.get(9).getRow());
         assertEquals(1, seats.get(9).getColumn());
+    }
+
+    @Test
+    void shouldPurchaseAvailableSeat() {
+        // Arrange
+        PurchaseRequestDto request = new PurchaseRequestDto(3, 4);
+
+        // Act
+        SeatDto purchasedSeat = cinemaService.purchaseTicket(request);
+
+        // Assert
+        assertEquals(3, purchasedSeat.getRow());
+        assertEquals(4, purchasedSeat.getColumn());
+        assertEquals(10, purchasedSeat.getPrice());
+        assertEquals(80, cinemaService.getSeats().getSeats().size());
+    }
+
+    @Test
+    void shouldThrowExceptionWhenSeatAlreadyPurchased() {
+        // Arrange
+        PurchaseRequestDto request = new PurchaseRequestDto(3, 4);
+        cinemaService.purchaseTicket(request);
+
+        // Act
+        IllegalArgumentException exception = assertThrows(
+                IllegalArgumentException.class,
+                () -> cinemaService.purchaseTicket(request)
+        );
+
+        // Assert
+        assertEquals("The ticket has been already purchased!", exception.getMessage());
+    }
+
+    @Test
+    void shouldThrowExceptionWhenRowIsOutOfBounds() {
+        // Arrange
+        PurchaseRequestDto request = new PurchaseRequestDto(10, 1);
+
+        // Act
+        IllegalArgumentException exception = assertThrows(
+                IllegalArgumentException.class,
+                () -> cinemaService.purchaseTicket(request)
+        );
+
+        // Assert
+        assertEquals("The number of a row or a column is out of bounds!", exception.getMessage());
+    }
+
+    @Test
+    void shouldThrowExceptionWhenColumnIsOutOfBounds() {
+        // Arrange
+        PurchaseRequestDto request = new PurchaseRequestDto(1, 10);
+
+        // Act
+        IllegalArgumentException exception = assertThrows(
+                IllegalArgumentException.class,
+                () -> cinemaService.purchaseTicket(request)
+        );
+
+        // Assert
+        assertEquals("The number of a row or a column is out of bounds!", exception.getMessage());
     }
 }

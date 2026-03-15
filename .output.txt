@@ -1,0 +1,201 @@
+On branch stage-002
+Your branch is up to date with 'origin/stage-002'.
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        deleted:    Cinema Room REST Service with Java/task/src/cinema/Seat.java
+        modified:   Cinema Room REST Service with Java/task/src/cinema/controller/CinemaController.java
+        new file:   Cinema Room REST Service with Java/task/src/cinema/dto/ErrorResponseDto.java
+        new file:   Cinema Room REST Service with Java/task/src/cinema/dto/PurchaseRequestDto.java
+        modified:   Cinema Room REST Service with Java/task/src/cinema/dto/SeatDto.java
+        modified:   Cinema Room REST Service with Java/task/src/cinema/service/CinemaService.java
+        deleted:    Topics/Custom threads/Custom threads/task-info.yaml
+        deleted:    Topics/Custom threads/Custom threads/task-remote-info.yaml
+        deleted:    Topics/Custom threads/Custom threads/task.html
+        deleted:    Topics/Custom threads/Message notifier as a thread/src/Main.java
+        deleted:    Topics/Custom threads/Message notifier as a thread/task-info.yaml
+        deleted:    Topics/Custom threads/Message notifier as a thread/task-remote-info.yaml
+        deleted:    Topics/Custom threads/Message notifier as a thread/task.html
+        deleted:    Topics/Custom threads/Multiple threads/src/Main.java
+        deleted:    Topics/Custom threads/Multiple threads/task-info.yaml
+        deleted:    Topics/Custom threads/Multiple threads/task-remote-info.yaml
+        deleted:    Topics/Custom threads/Multiple threads/task.html
+        deleted:    Topics/Custom threads/Starting threads/src/Main.java
+        deleted:    Topics/Custom threads/Starting threads/task-info.yaml
+        deleted:    Topics/Custom threads/Starting threads/task-remote-info.yaml
+        deleted:    Topics/Custom threads/Starting threads/task.html
+        deleted:    Topics/Custom threads/Writing a thread for printing numbers/src/Main.java
+        deleted:    Topics/Custom threads/Writing a thread for printing numbers/task-info.yaml
+        deleted:    Topics/Custom threads/Writing a thread for printing numbers/task-remote-info.yaml
+        deleted:    Topics/Custom threads/Writing a thread for printing numbers/task.html
+        renamed:    Topics/Functional decomposition/Calculator with four methods/src/Main.java -> Topics/Functional decomposition (1)/Calculator with four methods/src/Main.java
+        renamed:    Topics/Functional decomposition/Calculator with four methods/task-info.yaml -> Topics/Functional decomposition (1)/Calculator with four methods/task-info.yaml
+        renamed:    Topics/Functional decomposition/Calculator with four methods/task-remote-info.yaml -> Topics/Functional decomposition (1)/Calculator with four methods/task-remote-info.yaml
+        renamed:    Topics/Functional decomposition/Calculator with four methods/task.html -> Topics/Functional decomposition (1)/Calculator with four methods/task.html
+        renamed:    Topics/Functional decomposition/A quadratic equation/src/Task.java -> Topics/Functional decomposition (1)/Count sum/src/Task.java
+        renamed:    Topics/The Map interface/Count sum/task-info.yaml -> Topics/Functional decomposition (1)/Count sum/task-info.yaml
+        renamed:    Topics/The Map interface/Count sum/task-remote-info.yaml -> Topics/Functional decomposition (1)/Count sum/task-remote-info.yaml
+        renamed:    Topics/The Map interface/Count sum/task.html -> Topics/Functional decomposition (1)/Count sum/task.html
+        renamed:    Topics/Functional decomposition/Decomposing switch cases in Java/src/Task.java -> Topics/Functional decomposition (1)/Duplications/src/Task.java
+        renamed:    Topics/The Map interface/Duplications/task-info.yaml -> Topics/Functional decomposition (1)/Duplications/task-info.yaml
+        renamed:    Topics/The Map interface/Duplications/task-remote-info.yaml -> Topics/Functional decomposition (1)/Duplications/task-remote-info.yaml
+        renamed:    Topics/The Map interface/Duplications/task.html -> Topics/Functional decomposition (1)/Duplications/task.html
+        renamed:    Topics/Custom threads/Custom threads/src/Task.java -> Topics/Functional decomposition (1)/Functional decomposition/src/Task.java
+        renamed:    Topics/Functional decomposition/Functional decomposition/task-info.yaml -> Topics/Functional decomposition (1)/Functional decomposition/task-info.yaml
+        renamed:    Topics/Functional decomposition/Functional decomposition/task-remote-info.yaml -> Topics/Functional decomposition (1)/Functional decomposition/task-remote-info.yaml
+        renamed:    Topics/Functional decomposition/Functional decomposition/task.html -> Topics/Functional decomposition (1)/Functional decomposition/task.html
+        renamed:    Topics/Functional decomposition/How to decompose correctly/src/Task.java -> Topics/Functional decomposition (1)/Getting value by key/src/Task.java
+        renamed:    Topics/The Map interface/Getting value by key/task-info.yaml -> Topics/Functional decomposition (1)/Getting value by key/task-info.yaml
+        renamed:    Topics/The Map interface/Getting value by key/task-remote-info.yaml -> Topics/Functional decomposition (1)/Getting value by key/task-remote-info.yaml
+        renamed:    Topics/The Map interface/Getting value by key/task.html -> Topics/Functional decomposition (1)/Getting value by key/task.html
+        renamed:    Topics/Functional decomposition/The main tools of functional decomposition/src/Task.java -> Topics/Functional decomposition (1)/Is it a collection/src/Task.java
+        renamed:    Topics/The Map interface/Is it a collection/task-info.yaml -> Topics/Functional decomposition (1)/Is it a collection/task-info.yaml
+        renamed:    Topics/The Map interface/Is it a collection/task-remote-info.yaml -> Topics/Functional decomposition (1)/Is it a collection/task-remote-info.yaml
+        renamed:    Topics/The Map interface/Is it a collection/task.html -> Topics/Functional decomposition (1)/Is it a collection/task.html
+        renamed:    Topics/Functional decomposition/Why decompose a program/src/Task.java -> Topics/Functional decomposition (1)/Is it true or not/src/Task.java
+        renamed:    Topics/The Map interface/Is it true or not/task-info.yaml -> Topics/Functional decomposition (1)/Is it true or not/task-info.yaml
+        renamed:    Topics/The Map interface/Is it true or not/task-remote-info.yaml -> Topics/Functional decomposition (1)/Is it true or not/task-remote-info.yaml
+        renamed:    Topics/The Map interface/Is it true or not/task.html -> Topics/Functional decomposition (1)/Is it true or not/task.html
+        renamed:    Topics/Functional decomposition/Kate's math function/src/Main.java -> Topics/Functional decomposition (1)/Kate's math function/src/Main.java
+        renamed:    Topics/Functional decomposition/Kate's math function/task-info.yaml -> Topics/Functional decomposition (1)/Kate's math function/task-info.yaml
+        renamed:    Topics/Functional decomposition/Kate's math function/task-remote-info.yaml -> Topics/Functional decomposition (1)/Kate's math function/task-remote-info.yaml
+        renamed:    Topics/Functional decomposition/Kate's math function/task.html -> Topics/Functional decomposition (1)/Kate's math function/task.html
+        renamed:    Topics/Functional decomposition/Math wizardry in your pocket/src/Main.java -> Topics/Functional decomposition (1)/Math wizardry in your pocket/src/Main.java
+        renamed:    Topics/Functional decomposition/Math wizardry in your pocket/task-info.yaml -> Topics/Functional decomposition (1)/Math wizardry in your pocket/task-info.yaml
+        renamed:    Topics/Functional decomposition/Math wizardry in your pocket/task-remote-info.yaml -> Topics/Functional decomposition (1)/Math wizardry in your pocket/task-remote-info.yaml
+        renamed:    Topics/Functional decomposition/Math wizardry in your pocket/task.html -> Topics/Functional decomposition (1)/Math wizardry in your pocket/task.html
+        renamed:    Topics/Functional decomposition/Method createFullName/src/Main.java -> Topics/Functional decomposition (1)/Method createFullName/src/Main.java
+        renamed:    Topics/Functional decomposition/Method createFullName/task-info.yaml -> Topics/Functional decomposition (1)/Method createFullName/task-info.yaml
+        renamed:    Topics/Functional decomposition/Method createFullName/task-remote-info.yaml -> Topics/Functional decomposition (1)/Method createFullName/task-remote-info.yaml
+        renamed:    Topics/Functional decomposition/Method createFullName/task.html -> Topics/Functional decomposition (1)/Method createFullName/task.html
+        renamed:    Topics/Functional decomposition/lesson-info.yaml -> Topics/Functional decomposition (1)/lesson-info.yaml
+        deleted:    Topics/Functional decomposition/A quadratic equation/task-info.yaml
+        deleted:    Topics/Functional decomposition/A quadratic equation/task-remote-info.yaml
+        deleted:    Topics/Functional decomposition/A quadratic equation/task.html
+        deleted:    Topics/Functional decomposition/Decomposing switch cases in Java/task-info.yaml
+        deleted:    Topics/Functional decomposition/Decomposing switch cases in Java/task-remote-info.yaml
+        deleted:    Topics/Functional decomposition/Decomposing switch cases in Java/task.html
+        deleted:    Topics/Functional decomposition/How to decompose correctly/task-info.yaml
+        deleted:    Topics/Functional decomposition/How to decompose correctly/task-remote-info.yaml
+        deleted:    Topics/Functional decomposition/How to decompose correctly/task.html
+        deleted:    Topics/Functional decomposition/The main tools of functional decomposition/task-info.yaml
+        deleted:    Topics/Functional decomposition/The main tools of functional decomposition/task-remote-info.yaml
+        deleted:    Topics/Functional decomposition/The main tools of functional decomposition/task.html
+        deleted:    Topics/Functional decomposition/Why decompose a program/task-info.yaml
+        deleted:    Topics/Functional decomposition/Why decompose a program/task-remote-info.yaml
+        deleted:    Topics/Functional decomposition/Why decompose a program/task.html
+        renamed:    Topics/The Map interface/Count sum/src/Task.java -> Topics/The Map interface (1)/Applicable constructs/src/Task.java
+        renamed:    Topics/Thread synchronization/Applicable constructs/task-info.yaml -> Topics/The Map interface (1)/Applicable constructs/task-info.yaml
+        renamed:    Topics/Thread synchronization/Applicable constructs/task-remote-info.yaml -> Topics/The Map interface (1)/Applicable constructs/task-remote-info.yaml
+        renamed:    Topics/Thread synchronization/Applicable constructs/task.html -> Topics/The Map interface (1)/Applicable constructs/task.html
+        renamed:    Topics/The Map interface/Duplications/src/Task.java -> Topics/The Map interface (1)/Correct keyword/src/Task.java
+        renamed:    Topics/Thread synchronization/Correct keyword/task-info.yaml -> Topics/The Map interface (1)/Correct keyword/task-info.yaml
+        renamed:    Topics/Thread synchronization/Correct keyword/task-remote-info.yaml -> Topics/The Map interface (1)/Correct keyword/task-remote-info.yaml
+        renamed:    Topics/Thread synchronization/Correct keyword/task.html -> Topics/The Map interface (1)/Correct keyword/task.html
+        renamed:    Topics/The Map interface/Create a map/src/Main.java -> Topics/The Map interface (1)/Create a map/src/Main.java
+        renamed:    Topics/The Map interface/Create a map/task-info.yaml -> Topics/The Map interface (1)/Create a map/task-info.yaml
+        renamed:    Topics/The Map interface/Create a map/task-remote-info.yaml -> Topics/The Map interface (1)/Create a map/task-remote-info.yaml
+        renamed:    Topics/The Map interface/Create a map/task.html -> Topics/The Map interface (1)/Create a map/task.html
+        renamed:    Topics/The Map interface/Getting value by key/src/Task.java -> Topics/The Map interface (1)/Statements about monitor (1)/src/Task.java
+        renamed:    Topics/Thread synchronization/Statements about monitor (1)/task-info.yaml -> Topics/The Map interface (1)/Statements about monitor (1)/task-info.yaml
+        renamed:    Topics/Thread synchronization/Statements about monitor (1)/task-remote-info.yaml -> Topics/The Map interface (1)/Statements about monitor (1)/task-remote-info.yaml
+        renamed:    Topics/Thread synchronization/Statements about monitor (1)/task.html -> Topics/The Map interface (1)/Statements about monitor (1)/task.html
+        renamed:    Topics/The Map interface/Is it a collection/src/Task.java -> Topics/The Map interface (1)/Statements about monitor/src/Task.java
+        renamed:    Topics/Thread synchronization/Statements about monitor/task-info.yaml -> Topics/The Map interface (1)/Statements about monitor/task-info.yaml
+        renamed:    Topics/Thread synchronization/Statements about monitor/task-remote-info.yaml -> Topics/The Map interface (1)/Statements about monitor/task-remote-info.yaml
+        renamed:    Topics/Thread synchronization/Statements about monitor/task.html -> Topics/The Map interface (1)/Statements about monitor/task.html
+        renamed:    Topics/The Map interface/Sum of values/src/Main.java -> Topics/The Map interface (1)/Sum of values/src/Main.java
+        renamed:    Topics/The Map interface/Sum of values/task-info.yaml -> Topics/The Map interface (1)/Sum of values/task-info.yaml
+        renamed:    Topics/The Map interface/Sum of values/task-remote-info.yaml -> Topics/The Map interface (1)/Sum of values/task-remote-info.yaml
+        renamed:    Topics/The Map interface/Sum of values/task.html -> Topics/The Map interface (1)/Sum of values/task.html
+        renamed:    Topics/Functional decomposition/Functional decomposition/src/Task.java -> Topics/The Map interface (1)/The Map interface/src/Task.java
+        renamed:    Topics/The Map interface/The Map interface/task-info.yaml -> Topics/The Map interface (1)/The Map interface/task-info.yaml
+        renamed:    Topics/The Map interface/The Map interface/task-remote-info.yaml -> Topics/The Map interface (1)/The Map interface/task-remote-info.yaml
+        renamed:    Topics/The Map interface/The Map interface/task.html -> Topics/The Map interface (1)/The Map interface/task.html
+        renamed:    Topics/The Map interface/Value or min/src/Main.java -> Topics/The Map interface (1)/Value or min/src/Main.java
+        renamed:    Topics/The Map interface/Value or min/task-info.yaml -> Topics/The Map interface (1)/Value or min/task-info.yaml
+        renamed:    Topics/The Map interface/Value or min/task-remote-info.yaml -> Topics/The Map interface (1)/Value or min/task-remote-info.yaml
+        renamed:    Topics/The Map interface/Value or min/task.html -> Topics/The Map interface (1)/Value or min/task.html
+        renamed:    Topics/The Map interface/Is it true or not/src/Task.java -> Topics/The Map interface (1)/What is a monitor/src/Task.java
+        renamed:    Topics/Thread synchronization/What is a monitor/task-info.yaml -> Topics/The Map interface (1)/What is a monitor/task-info.yaml
+        renamed:    Topics/Thread synchronization/What is a monitor/task-remote-info.yaml -> Topics/The Map interface (1)/What is a monitor/task-remote-info.yaml
+        renamed:    Topics/Thread synchronization/What is a monitor/task.html -> Topics/The Map interface (1)/What is a monitor/task.html
+        renamed:    Topics/The Map interface/lesson-info.yaml -> Topics/The Map interface (1)/lesson-info.yaml
+        deleted:    Topics/Thread management/Calculate the number of distinct characters/src/Main.java
+        deleted:    Topics/Thread management/Calculate the number of distinct characters/task-info.yaml
+        deleted:    Topics/Thread management/Calculate the number of distinct characters/task-remote-info.yaml
+        deleted:    Topics/Thread management/Calculate the number of distinct characters/task.html
+        deleted:    Topics/Thread management/Ordering the execution of threads/src/Main.java
+        deleted:    Topics/Thread management/Ordering the execution of threads/task-info.yaml
+        deleted:    Topics/Thread management/Ordering the execution of threads/task-remote-info.yaml
+        deleted:    Topics/Thread management/Ordering the execution of threads/task.html
+        deleted:    Topics/Thread management/Summing with threads/src/Main.java
+        deleted:    Topics/Thread management/Summing with threads/task-info.yaml
+        deleted:    Topics/Thread management/Summing with threads/task-remote-info.yaml
+        deleted:    Topics/Thread management/Summing with threads/task.html
+        deleted:    Topics/Thread management/Thread management/src/Task.java
+        deleted:    Topics/Thread management/Thread management/task-info.yaml
+        deleted:    Topics/Thread management/Thread management/task-remote-info.yaml
+        deleted:    Topics/Thread management/Thread management/task.html
+        deleted:    Topics/Thread management/VeganPizza/src/Main.java
+        deleted:    Topics/Thread management/VeganPizza/task-info.yaml
+        deleted:    Topics/Thread management/VeganPizza/task-remote-info.yaml
+        deleted:    Topics/Thread management/VeganPizza/task.html
+        deleted:    Topics/Thread management/lesson-info.yaml
+        renamed:    Topics/Thread synchronization/Account implementation/src/Main.java -> Topics/Thread synchronization (1)/Account implementation/src/Main.java
+        renamed:    Topics/Thread synchronization/Account implementation/task-info.yaml -> Topics/Thread synchronization (1)/Account implementation/task-info.yaml
+        renamed:    Topics/Thread synchronization/Account implementation/task-remote-info.yaml -> Topics/Thread synchronization (1)/Account implementation/task-remote-info.yaml
+        renamed:    Topics/Thread synchronization/Account implementation/task.html -> Topics/Thread synchronization (1)/Account implementation/task.html
+        renamed:    Topics/Thread management/The max number of parallel threads/answer.txt -> Topics/Thread synchronization (1)/The max number of parallel threads/answer.txt
+        renamed:    Topics/Thread management/The max number of parallel threads/task-info.yaml -> Topics/Thread synchronization (1)/The max number of parallel threads/task-info.yaml
+        renamed:    Topics/Thread management/The max number of parallel threads/task-remote-info.yaml -> Topics/Thread synchronization (1)/The max number of parallel threads/task-remote-info.yaml
+        renamed:    Topics/Thread management/The max number of parallel threads/task.html -> Topics/Thread synchronization (1)/The max number of parallel threads/task.html
+        renamed:    Topics/Thread management/The order of lines/src/Task.java -> Topics/Thread synchronization (1)/The order of lines/src/Task.java
+        renamed:    Topics/Thread management/The order of lines/task-info.yaml -> Topics/Thread synchronization (1)/The order of lines/task-info.yaml
+        renamed:    Topics/Thread management/The order of lines/task-remote-info.yaml -> Topics/Thread synchronization (1)/The order of lines/task-remote-info.yaml
+        renamed:    Topics/Thread management/The order of lines/task.html -> Topics/Thread synchronization (1)/The order of lines/task.html
+        renamed:    Topics/Thread synchronization/Thread safe counter/src/Main.java -> Topics/Thread synchronization (1)/Thread safe counter/src/Main.java
+        renamed:    Topics/Thread synchronization/Thread safe counter/task-info.yaml -> Topics/Thread synchronization (1)/Thread safe counter/task-info.yaml
+        renamed:    Topics/Thread synchronization/Thread safe counter/task-remote-info.yaml -> Topics/Thread synchronization (1)/Thread safe counter/task-remote-info.yaml
+        renamed:    Topics/Thread synchronization/Thread safe counter/task.html -> Topics/Thread synchronization (1)/Thread safe counter/task.html
+        renamed:    Topics/Thread synchronization/Thread safe down counter/src/Main.java -> Topics/Thread synchronization (1)/Thread safe down counter/src/Main.java
+        renamed:    Topics/Thread synchronization/Thread safe down counter/task-info.yaml -> Topics/Thread synchronization (1)/Thread safe down counter/task-info.yaml
+        renamed:    Topics/Thread synchronization/Thread safe down counter/task-remote-info.yaml -> Topics/Thread synchronization (1)/Thread safe down counter/task-remote-info.yaml
+        renamed:    Topics/Thread synchronization/Thread safe down counter/task.html -> Topics/Thread synchronization (1)/Thread safe down counter/task.html
+        renamed:    Topics/The Map interface/The Map interface/src/Task.java -> Topics/Thread synchronization (1)/Thread synchronization/src/Task.java
+        renamed:    Topics/Thread synchronization/Thread synchronization/task-info.yaml -> Topics/Thread synchronization (1)/Thread synchronization/task-info.yaml
+        renamed:    Topics/Thread synchronization/Thread synchronization/task-remote-info.yaml -> Topics/Thread synchronization (1)/Thread synchronization/task-remote-info.yaml
+        renamed:    Topics/Thread synchronization/Thread synchronization/task.html -> Topics/Thread synchronization (1)/Thread synchronization/task.html
+        renamed:    Topics/Thread synchronization/lesson-info.yaml -> Topics/Thread synchronization (1)/lesson-info.yaml
+        deleted:    Topics/Thread synchronization/Applicable constructs/src/Task.java
+        deleted:    Topics/Thread synchronization/Correct keyword/src/Task.java
+        deleted:    Topics/Thread synchronization/Statements about monitor (1)/src/Task.java
+        deleted:    Topics/Thread synchronization/Statements about monitor/src/Task.java
+        deleted:    Topics/Thread synchronization/Thread synchronization/src/Task.java
+        deleted:    Topics/Thread synchronization/What is a monitor/src/Task.java
+        deleted:    Topics/Threads as objects/Thread name/src/Main.java
+        deleted:    Topics/Threads as objects/Thread name/task.html
+        modified:   build.gradle
+        new file:   gradle.properties
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   Cinema Room REST Service with Java/A change of plans/task-info.yaml
+        modified:   Cinema Room REST Service with Java/Take your seat/task-info.yaml
+        modified:   Cinema Room REST Service with Java/The show begins/task-info.yaml
+        modified:   Cinema Room REST Service with Java/task/src/cinema/dto/ErrorResponseDto.java
+        modified:   Cinema Room REST Service with Java/task/src/cinema/dto/PurchaseRequestDto.java
+        modified:   Cinema Room REST Service with Java/task/test/CinemaTests.java
+        modified:   Cinema Room REST Service with Java/task/test/controller/CinemaControllerTest.java
+        modified:   Cinema Room REST Service with Java/task/test/service/CinemaServiceTest.java
+        modified:   Topics/Declaring methods/Calculating factorials/src/Main.java
+        modified:   build.gradle
+        modified:   course-remote-info.yaml
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        Topics/Custom threads/Custom threads/
+        Topics/Custom threads/Message notifier as a thread/
+        Topics/Custom threads/Multiple threads/
+        Topics/Custom threads/Starting threads/
+        Topics/Custom threads/Writing a thread for printing numbers/
+        Topics/Threads as objects/Thread name/src/
+        Topics/Threads as objects/Thread name/task.html
