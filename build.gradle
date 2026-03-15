@@ -1,21 +1,43 @@
+plugins {
+    id 'org.springframework.boot' version '3.2.5' apply false
+    id 'io.spring.dependency-management' version '1.1.4' apply false
+    id 'org.jetbrains.kotlin.jvm' version '1.9.25' apply false
+    id 'org.jetbrains.kotlin.plugin.spring' version '1.9.25' apply false
+}
+
 apply plugin: 'hyperskill'
 
 subprojects {
+    if (it.path.startsWith(':Topics-')) {
+        afterEvaluate {
+            tasks.forEach { it.enabled = false }
+        }
+        return
+    }
     apply plugin: 'application'
     apply plugin: 'java'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
 
-    java.toolchain.languageVersion = JavaLanguageVersion.of(23)
+    def userJava = 17
+    def hsJava = Integer.parseInt(hs.java.version)
+    def testJava = 17
+
+    java {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
 
     compileJava {
-        javaCompiler = javaToolchains.compilerFor {
-            languageVersion = JavaLanguageVersion.of(23)
-        }
+        options.release = 17
     }
 
     compileTestJava {
-        javaCompiler = javaToolchains.compilerFor {
-            languageVersion = JavaLanguageVersion.of(23)
-        }
+        options.release = 17
+    }
+
+    springBoot {
+        mainClass = 'cinema.CinemaRoomRestServiceApplication'
     }
 
     repositories {
@@ -25,8 +47,8 @@ subprojects {
     }
 
     dependencies {
-        implementation 'org.springframework.boot:spring-boot-starter-web:3.4.3'
-        testImplementation 'org.springframework.boot:spring-boot-starter-test:3.4.3'
+        implementation 'org.springframework.boot:spring-boot-starter-web'
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
         testImplementation 'com.github.hyperskill:hs-test:release-SNAPSHOT'
     }
 
@@ -40,8 +62,8 @@ subprojects {
     }
 
     test {
-        useJUnitPlatform()
         systemProperty "file.encoding", "utf-8"
+        useJUnitPlatform()
         outputs.upToDateWhen { false }
     }
 
@@ -57,7 +79,7 @@ project(':util') {
     }
 }
 
-configure(subprojects.findAll {it.name != 'util'}) {
+configure(subprojects.findAll { it.name != 'util' && !it.path.startsWith(':Topics-') }) {
     dependencies {
         testImplementation project(':util').sourceSets.main.output
         testImplementation project(':util').sourceSets.test.output

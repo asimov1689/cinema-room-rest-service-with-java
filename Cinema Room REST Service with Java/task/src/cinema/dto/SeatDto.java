@@ -4,6 +4,7 @@ public class SeatDto {
 
     private int row;
     private int column;
+    private int price;
 
     public SeatDto() {
     }
@@ -11,6 +12,7 @@ public class SeatDto {
     public SeatDto(int row, int column) {
         this.row = row;
         this.column = column;
+        this.price = row <= 4 ? 10 : 8;
     }
 
     public int getRow() {
@@ -27,5 +29,13 @@ public class SeatDto {
 
     public void setColumn(int column) {
         this.column = column;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 }

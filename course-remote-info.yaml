@@ -3,7 +3,7 @@ hyperskill_project:
   ide_files: https://hyperskill.org/api/projects/189/additional-files/additional_files.json
   is_template_based: false
   use_ide: true
-update_date: "Tue, 10 Mar 2026 20:22:29 UTC"
+update_date: "Sun, 15 Mar 2026 11:23:00 UTC"
 stages:
   - id: 945
     step: 13375
@@ -37,8 +37,6 @@ topics:
       theory_id: 9746
     - title: Compile and run Java from CLI
       theory_id: 3746
-    - title: IDE
-      theory_id: 10996
     - title: World Wide Web
       theory_id: 6633
     - title: "HTTP: HyperText Transfer Protocol"
@@ -63,6 +61,8 @@ topics:
       theory_id: 20078
     - title: Dynamic array
       theory_id: 5357
+    - title: IDE
+      theory_id: 10996
     - title: HTTP URL
       theory_id: 6740
     - title: Introduction to Spring Web MVC
@@ -201,10 +201,10 @@ topics:
       theory_id: 17007
     - title: JSON
       theory_id: 6854
-    - title: IntelliJ IDEA
-      theory_id: 37202
     - title: Getting data from REST
       theory_id: 13287
+    - title: IntelliJ IDEA
+      theory_id: 37202
     - title: Debugging overview
       theory_id: 14368
     - title: Run and debug with IntelliJ IDEA

@@ -10,6 +10,7 @@ files:
     visible: true
     learner_created: false
   - name: test/CinemaTests.java
+    visible: true
     learner_created: false
   - name: src/cinema/Seat.java
     visible: true
