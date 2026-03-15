@@ -1,15 +1,20 @@
 package cinema.service;
 
 import cinema.dto.PurchaseRequestDto;
+import cinema.dto.ReturnRequestDto;
 import cinema.dto.SeatDto;
 import cinema.dto.SeatsResponseDto;
 import cinema.dto.TicketResponseDto;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class CinemaServiceTest {
 
@@ -119,5 +124,39 @@ class CinemaServiceTest {
 
         // Assert
         assertEquals("The number of a row or a column is out of bounds!", exception.getMessage());
+    }
+
+    @Test
+    void shouldReturnTicketSuccessfully() {
+        // Arrange
+        PurchaseRequestDto purchaseRequest = new PurchaseRequestDto(1, 1);
+        TicketResponseDto ticketResponse = cinemaService.purchaseTicket(purchaseRequest);
+        UUID token = ticketResponse.getToken();
+        ReturnRequestDto returnRequest = new ReturnRequestDto(token);
+
+        // Act
+        Map<String, SeatDto> returnResponse = cinemaService.returnTicket(returnRequest);
+
+        // Assert
+        assertNotNull(returnResponse.get("ticket"));
+        assertEquals(1, returnResponse.get("ticket").getRow());
+        assertEquals(1, returnResponse.get("ticket").getColumn());
+        assertTrue(cinemaService.getSeats().getSeats().stream()
+                .anyMatch(seat -> seat.getRow() == 1 && seat.getColumn() == 1));
+    }
+
+    @Test
+    void shouldThrowExceptionWhenTokenIsWrong() {
+        // Arrange
+        ReturnRequestDto returnRequest = new ReturnRequestDto(UUID.randomUUID());
+
+        // Act
+        IllegalArgumentException exception = assertThrows(
+                IllegalArgumentException.class,
+                () -> cinemaService.returnTicket(returnRequest)
+        );
+
+        // Assert
+        assertEquals("Wrong token!", exception.getMessage());
     }
 }

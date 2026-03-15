@@ -60,6 +60,6 @@ public class CinemaService {
 
         SeatDto seatToReturn = purchasedTickets.remove(token);
         availableSeats.add(seatToReturn);
-        return Map.of("returned_ticket", seatToReturn);
+        return Map.of("ticket", seatToReturn);
     }
 }
