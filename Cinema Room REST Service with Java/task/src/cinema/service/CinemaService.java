@@ -22,6 +22,7 @@ public class CinemaService {
 
     private final List<SeatDto> availableSeats = new CopyOnWriteArrayList<>();
     private final Map<UUID, SeatDto> purchasedTickets = new ConcurrentHashMap<>();
+    private final Object seatLock = new Object();
 
     public CinemaService() {
         for (int row = 1; row <= TOTAL_ROWS; row++) {
@@ -41,24 +42,28 @@ public class CinemaService {
             throw new IllegalArgumentException("The number of a row or a column is out of bounds!");
         }
 
-        SeatDto seatToPurchase = availableSeats.stream()
-                .filter(seat -> seat.getRow() == request.getRow() && seat.getColumn() == request.getColumn())
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("The ticket has been already purchased!"));
-
-        availableSeats.remove(seatToPurchase);
-        UUID token = UUID.randomUUID();
-        purchasedTickets.put(token, seatToPurchase);
-        return new TicketResponseDto(token, seatToPurchase);
+        synchronized (seatLock) {
+            SeatDto seatToPurchase = availableSeats.stream()
+                    .filter(seat -> seat.getRow() == request.getRow() && seat.getColumn() == request.getColumn())
+                    .findFirst()
+                    .orElseThrow(() -> new IllegalArgumentException("The ticket has been already purchased!"));
+            availableSeats.remove(seatToPurchase);
+            UUID token = UUID.randomUUID();
+            purchasedTickets.put(token, seatToPurchase);
+            return new TicketResponseDto(token, seatToPurchase);
+        }
     }
 
     public Map<String, SeatDto> returnTicket(ReturnRequestDto request) {
         UUID token = request.getToken();
-        if (token == null || !purchasedTickets.containsKey(token)) {
+        if (token == null) {
             throw new IllegalArgumentException("Wrong token!");
         }
 
         SeatDto seatToReturn = purchasedTickets.remove(token);
+        if (seatToReturn == null) {
+            throw new IllegalArgumentException("Wrong token!");
+        }
         availableSeats.add(seatToReturn);
         return Map.of("ticket", seatToReturn);
     }
