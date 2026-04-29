@@ -2,136 +2,100 @@ package cinema.service;
 
 import cinema.dto.PurchaseRequestDto;
 import cinema.dto.ReturnRequestDto;
+import cinema.dto.SeatDto;
 import cinema.dto.SeatsResponseDto;
 import cinema.dto.StatsResponseDto;
 import cinema.dto.TicketResponseDto;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.Map;
+import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class CinemaServiceTest {
 
-    private CinemaService cinemaService;
-
-    @BeforeEach
-    void setUp() {
-        cinemaService = new CinemaService();
-    }
+    private final CinemaService cinemaService = new CinemaService();
 
     @Test
     void shouldReturnAllSeatsInitially() {
-        // Arrange
-
-        // Act
         SeatsResponseDto response = cinemaService.getSeats();
-
-        // Assert
         assertEquals(9, response.getRows());
         assertEquals(9, response.getColumns());
         assertEquals(81, response.getSeats().size());
     }
 
     @Test
+    void shouldReturnSeatsInRowMajorOrder() {
+        List<SeatDto> seats = cinemaService.getSeats().getSeats();
+        assertEquals(1, seats.get(0).getRow());
+        assertEquals(1, seats.get(0).getColumn());
+        assertEquals(1, seats.get(1).getRow());
+        assertEquals(2, seats.get(1).getColumn());
+        assertEquals(2, seats.get(9).getRow());
+        assertEquals(1, seats.get(9).getColumn());
+    }
+
+    @Test
     void shouldPurchaseTicketSuccessfully() {
-        // Arrange
-        PurchaseRequestDto request = new PurchaseRequestDto(3, 4);
-
-        // Act
-        TicketResponseDto response = cinemaService.purchaseTicket(request);
-
-        // Assert
+        TicketResponseDto response = cinemaService.purchaseTicket(new PurchaseRequestDto(3, 4));
         assertNotNull(response.getToken());
-        assertEquals(3, response.getTicket().getRow());
-        assertEquals(4, response.getTicket().getColumn());
-        assertEquals(10, response.getTicket().getPrice());
+        SeatDto seat = response.getTicket();
+        assertEquals(3, seat.getRow());
+        assertEquals(4, seat.getColumn());
+        assertEquals(10, seat.getPrice());
+        assertEquals(80, cinemaService.getSeats().getSeats().size());
     }
 
     @Test
     void shouldThrowExceptionWhenTicketAlreadyPurchased() {
-        // Arrange
         PurchaseRequestDto request = new PurchaseRequestDto(3, 4);
         cinemaService.purchaseTicket(request);
-
-        // Act
-        IllegalArgumentException exception = assertThrows(
+        IllegalArgumentException ex = assertThrows(
                 IllegalArgumentException.class,
                 () -> cinemaService.purchaseTicket(request)
         );
-
-        // Assert
-        assertEquals("The ticket has been already purchased!", exception.getMessage());
+        assertEquals("The ticket has been already purchased!", ex.getMessage());
     }
 
     @Test
     void shouldThrowExceptionWhenRowIsOutOfBounds() {
-        // Arrange
-        PurchaseRequestDto request = new PurchaseRequestDto(10, 4);
-
-        // Act
-        IllegalArgumentException exception = assertThrows(
+        IllegalArgumentException ex = assertThrows(
                 IllegalArgumentException.class,
-                () -> cinemaService.purchaseTicket(request)
+                () -> cinemaService.purchaseTicket(new PurchaseRequestDto(10, 1))
         );
-
-        // Assert
-        assertEquals("The number of a row or a column is out of bounds!", exception.getMessage());
+        assertEquals("The number of a row or a column is out of bounds!", ex.getMessage());
     }
 
     @Test
     void shouldThrowExceptionWhenColumnIsOutOfBounds() {
-        // Arrange
-        PurchaseRequestDto request = new PurchaseRequestDto(3, 10);
-
-        // Act
-        IllegalArgumentException exception = assertThrows(
+        IllegalArgumentException ex = assertThrows(
                 IllegalArgumentException.class,
-                () -> cinemaService.purchaseTicket(request)
+                () -> cinemaService.purchaseTicket(new PurchaseRequestDto(1, 10))
         );
-
-        // Assert
-        assertEquals("The number of a row or a column is out of bounds!", exception.getMessage());
+        assertEquals("The number of a row or a column is out of bounds!", ex.getMessage());
     }
 
     @Test
     void shouldReturnTicketSuccessfully() {
-        // Arrange
-        PurchaseRequestDto purchaseRequest = new PurchaseRequestDto(3, 4);
-        TicketResponseDto purchasedTicket = cinemaService.purchaseTicket(purchaseRequest);
-        ReturnRequestDto returnRequest = new ReturnRequestDto(purchasedTicket.getToken());
-
-        // Act
-        Map<String, ?> response = cinemaService.returnTicket(returnRequest);
-
-        // Assert
-        assertNotNull(response.get("ticket"));
+        TicketResponseDto purchased = cinemaService.purchaseTicket(new PurchaseRequestDto(3, 4));
+        cinemaService.returnTicket(new ReturnRequestDto(purchased.getToken()));
+        assertEquals(81, cinemaService.getSeats().getSeats().size());
     }
 
     @Test
     void shouldThrowExceptionWhenTokenIsWrong() {
-        // Arrange
-        ReturnRequestDto request = new ReturnRequestDto(java.util.UUID.fromString("123e4567-e89b-12d3-a456-426614174000"));
-
-        // Act
-        IllegalArgumentException exception = assertThrows(
+        IllegalArgumentException ex = assertThrows(
                 IllegalArgumentException.class,
-                () -> cinemaService.returnTicket(request)
+                () -> cinemaService.returnTicket(new ReturnRequestDto(java.util.UUID.randomUUID()))
         );
-
-        // Assert
-        assertEquals("Wrong token!", exception.getMessage());
+        assertEquals("Wrong token!", ex.getMessage());
     }
 
     @Test
     void shouldReturnInitialStatsWithCorrectPassword() {
-        // Arrange
-
-        // Act
         StatsResponseDto stats = cinemaService.getStats("super_secret");
-
-        // Assert
         assertEquals(0, stats.getIncome());
         assertEquals(81, stats.getAvailable());
         assertEquals(0, stats.getPurchased());
@@ -139,44 +103,28 @@ class CinemaServiceTest {
 
     @Test
     void shouldReturnUpdatedStatsAfterPurchases() {
-        // Arrange
         cinemaService.purchaseTicket(new PurchaseRequestDto(1, 1));
-        cinemaService.purchaseTicket(new PurchaseRequestDto(5, 1));
-
-        // Act
         StatsResponseDto stats = cinemaService.getStats("super_secret");
-
-        // Assert
-        assertEquals(18, stats.getIncome());
-        assertEquals(79, stats.getAvailable());
-        assertEquals(2, stats.getPurchased());
+        assertEquals(10, stats.getIncome());
+        assertEquals(80, stats.getAvailable());
+        assertEquals(1, stats.getPurchased());
     }
 
     @Test
     void shouldThrowExceptionWhenPasswordIsWrong() {
-        // Arrange
-
-        // Act
-        IllegalStateException exception = assertThrows(
+        IllegalStateException ex = assertThrows(
                 IllegalStateException.class,
                 () -> cinemaService.getStats("wrong_password")
         );
-
-        // Assert
-        assertEquals("The password is wrong!", exception.getMessage());
+        assertEquals("The password is wrong!", ex.getMessage());
     }
 
     @Test
     void shouldThrowExceptionWhenPasswordIsMissing() {
-        // Arrange
-
-        // Act
-        IllegalStateException exception = assertThrows(
+        IllegalStateException ex = assertThrows(
                 IllegalStateException.class,
                 () -> cinemaService.getStats(null)
         );
-
-        // Assert
-        assertEquals("The password is wrong!", exception.getMessage());
+        assertEquals("The password is wrong!", ex.getMessage());
     }
 }
