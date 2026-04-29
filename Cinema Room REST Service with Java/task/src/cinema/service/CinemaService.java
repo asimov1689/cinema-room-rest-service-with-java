@@ -16,6 +16,7 @@ public class CinemaService {
     private static final int TOTAL_COLUMNS = 9;
 
     private final List<SeatDto> availableSeats = new CopyOnWriteArrayList<>();
+    private final Object seatLock = new Object();
 
     public CinemaService() {
         for (int row = 1; row <= TOTAL_ROWS; row++) {
@@ -35,12 +36,13 @@ public class CinemaService {
             throw new IllegalArgumentException("The number of a row or a column is out of bounds!");
         }
 
-        SeatDto seatToPurchase = availableSeats.stream()
-                .filter(seat -> seat.getRow() == request.getRow() && seat.getColumn() == request.getColumn())
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("The ticket has been already purchased!"));
-
-        availableSeats.remove(seatToPurchase);
-        return seatToPurchase;
+        synchronized (seatLock) {
+            SeatDto seatToPurchase = availableSeats.stream()
+                    .filter(seat -> seat.getRow() == request.getRow() && seat.getColumn() == request.getColumn())
+                    .findFirst()
+                    .orElseThrow(() -> new IllegalArgumentException("The ticket has been already purchased!"));
+            availableSeats.remove(seatToPurchase);
+            return seatToPurchase;
+        }
     }
 }
