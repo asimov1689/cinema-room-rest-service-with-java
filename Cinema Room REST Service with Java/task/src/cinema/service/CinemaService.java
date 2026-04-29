@@ -6,6 +6,7 @@ import cinema.dto.SeatDto;
 import cinema.dto.SeatsResponseDto;
 import cinema.dto.StatsResponseDto;
 import cinema.dto.TicketResponseDto;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -20,10 +21,14 @@ public class CinemaService {
 
     private static final int TOTAL_ROWS = 9;
     private static final int TOTAL_COLUMNS = 9;
-    private static final String SUPER_SECRET = "super_secret";
+
+    // Loaded from application.properties; override via CINEMA_STATS_PASSWORD env var in production
+    @Value("${cinema.stats.password:super_secret}")
+    private String statsPassword = "super_secret";
 
     private final List<SeatDto> availableSeats = new CopyOnWriteArrayList<>();
     private final Map<UUID, SeatDto> purchasedTickets = new ConcurrentHashMap<>();
+    private final Object seatLock = new Object();
 
     public CinemaService() {
         for (int row = 1; row <= TOTAL_ROWS; row++) {
@@ -40,17 +45,17 @@ public class CinemaService {
     public TicketResponseDto purchaseTicket(PurchaseRequestDto request) {
         validateSeatBounds(request.getRow(), request.getColumn());
 
-        SeatDto seatToPurchase = availableSeats.stream()
-                .filter(seat -> seat.getRow() == request.getRow() && seat.getColumn() == request.getColumn())
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("The ticket has been already purchased!"));
+        synchronized (seatLock) {
+            SeatDto seatToPurchase = availableSeats.stream()
+                    .filter(seat -> seat.getRow() == request.getRow() && seat.getColumn() == request.getColumn())
+                    .findFirst()
+                    .orElseThrow(() -> new IllegalArgumentException("The ticket has been already purchased!"));
 
-        availableSeats.remove(seatToPurchase);
-
-        UUID token = UUID.randomUUID();
-        purchasedTickets.put(token, seatToPurchase);
-
-        return new TicketResponseDto(token, seatToPurchase);
+            availableSeats.remove(seatToPurchase);
+            UUID token = UUID.randomUUID();
+            purchasedTickets.put(token, seatToPurchase);
+            return new TicketResponseDto(token, seatToPurchase);
+        }
     }
 
     public Map<String, SeatDto> returnTicket(ReturnRequestDto request) {
@@ -59,19 +64,17 @@ public class CinemaService {
         }
 
         UUID token = request.getToken();
-
         SeatDto seatToReturn = purchasedTickets.remove(token);
         if (seatToReturn == null) {
             throw new IllegalArgumentException("Wrong token!");
         }
 
         availableSeats.add(seatToReturn);
-
         return Map.of("ticket", seatToReturn);
     }
 
     public StatsResponseDto getStats(String password) {
-        if (!SUPER_SECRET.equals(password)) {
+        if (!statsPassword.equals(password)) {
             throw new IllegalStateException("The password is wrong!");
         }
 
@@ -79,19 +82,12 @@ public class CinemaService {
                 .mapToInt(SeatDto::getPrice)
                 .sum();
 
-        int available = availableSeats.size();
-        int purchased = purchasedTickets.size();
-
-        return new StatsResponseDto(income, available, purchased);
+        return new StatsResponseDto(income, availableSeats.size(), purchasedTickets.size());
     }
 
     private void validateSeatBounds(int row, int column) {
         if (row < 1 || row > TOTAL_ROWS || column < 1 || column > TOTAL_COLUMNS) {
             throw new IllegalArgumentException("The number of a row or a column is out of bounds!");
         }
-    }
-
-    private int calculatePrice(int row) {
-        return row <= 4 ? 10 : 8;
     }
 }

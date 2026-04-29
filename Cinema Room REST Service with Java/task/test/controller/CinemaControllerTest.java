@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -12,7 +13,8 @@ import static org.hamcrest.Matchers.notNullValue;
 import static org.springframework.test.annotation.DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -24,9 +26,6 @@ class CinemaControllerTest {
 
     @Test
     void shouldReturnSeats() throws Exception {
-        // Arrange
-
-        // Act & Assert
         mockMvc.perform(get("/seats"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.rows", is(9)))
@@ -36,7 +35,6 @@ class CinemaControllerTest {
 
     @Test
     void shouldPurchaseTicket() throws Exception {
-        // Arrange
         String requestBody = """
                 {
                   "row": 3,
@@ -44,9 +42,8 @@ class CinemaControllerTest {
                 }
                 """;
 
-        // Act & Assert
         mockMvc.perform(post("/purchase")
-                        .contentType("application/json")
+                        .contentType(MediaType.APPLICATION_JSON)
                         .content(requestBody))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.token", notNullValue()))
@@ -57,7 +54,6 @@ class CinemaControllerTest {
 
     @Test
     void shouldReturnBadRequestWhenTicketAlreadyPurchased() throws Exception {
-        // Arrange
         String requestBody = """
                 {
                   "row": 3,
@@ -66,12 +62,11 @@ class CinemaControllerTest {
                 """;
 
         mockMvc.perform(post("/purchase")
-                .contentType("application/json")
+                .contentType(MediaType.APPLICATION_JSON)
                 .content(requestBody));
 
-        // Act & Assert
         mockMvc.perform(post("/purchase")
-                        .contentType("application/json")
+                        .contentType(MediaType.APPLICATION_JSON)
                         .content(requestBody))
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.error", is("The ticket has been already purchased!")));
@@ -79,7 +74,6 @@ class CinemaControllerTest {
 
     @Test
     void shouldReturnBadRequestWhenSeatIsOutOfBounds() throws Exception {
-        // Arrange
         String requestBody = """
                 {
                   "row": 15,
@@ -87,9 +81,8 @@ class CinemaControllerTest {
                 }
                 """;
 
-        // Act & Assert
         mockMvc.perform(post("/purchase")
-                        .contentType("application/json")
+                        .contentType(MediaType.APPLICATION_JSON)
                         .content(requestBody))
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.error", is("The number of a row or a column is out of bounds!")));
@@ -97,7 +90,6 @@ class CinemaControllerTest {
 
     @Test
     void shouldReturnTicket() throws Exception {
-        // Arrange
         String purchaseRequest = """
                 {
                   "row": 3,
@@ -106,11 +98,9 @@ class CinemaControllerTest {
                 """;
 
         String purchaseResponse = mockMvc.perform(post("/purchase")
-                        .contentType("application/json")
+                        .contentType(MediaType.APPLICATION_JSON)
                         .content(purchaseRequest))
-                .andReturn()
-                .getResponse()
-                .getContentAsString();
+                .andReturn().getResponse().getContentAsString();
 
         String token = purchaseResponse.split("\"token\":\"")[1].split("\"")[0];
 
@@ -120,9 +110,8 @@ class CinemaControllerTest {
                 }
                 """.formatted(token);
 
-        // Act & Assert
         mockMvc.perform(post("/return")
-                        .contentType("application/json")
+                        .contentType(MediaType.APPLICATION_JSON)
                         .content(returnRequest))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.ticket.row", is(3)))
@@ -132,16 +121,14 @@ class CinemaControllerTest {
 
     @Test
     void shouldReturnBadRequestWhenTokenIsWrong() throws Exception {
-        // Arrange
         String requestBody = """
                 {
                   "token": "123e4567-e89b-12d3-a456-426614174000"
                 }
                 """;
 
-        // Act & Assert
         mockMvc.perform(post("/return")
-                        .contentType("application/json")
+                        .contentType(MediaType.APPLICATION_JSON)
                         .content(requestBody))
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.error", is("Wrong token!")));
@@ -149,9 +136,6 @@ class CinemaControllerTest {
 
     @Test
     void shouldReturnUnauthorizedWhenPasswordIsMissing() throws Exception {
-        // Arrange
-
-        // Act & Assert
         mockMvc.perform(get("/stats"))
                 .andExpect(status().isUnauthorized())
                 .andExpect(jsonPath("$.error", is("The password is wrong!")));
@@ -159,9 +143,6 @@ class CinemaControllerTest {
 
     @Test
     void shouldReturnUnauthorizedWhenPasswordIsWrong() throws Exception {
-        // Arrange
-
-        // Act & Assert
         mockMvc.perform(get("/stats?password=wrong_password"))
                 .andExpect(status().isUnauthorized())
                 .andExpect(jsonPath("$.error", is("The password is wrong!")));
@@ -169,9 +150,6 @@ class CinemaControllerTest {
 
     @Test
     void shouldReturnStatsWhenPasswordIsCorrect() throws Exception {
-        // Arrange
-
-        // Act & Assert
         mockMvc.perform(get("/stats?password=super_secret"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.income", is(0)))
@@ -181,7 +159,6 @@ class CinemaControllerTest {
 
     @Test
     void shouldReturnUpdatedStatsAfterPurchase() throws Exception {
-        // Arrange
         String requestBody = """
                 {
                   "row": 1,
@@ -190,10 +167,9 @@ class CinemaControllerTest {
                 """;
 
         mockMvc.perform(post("/purchase")
-                .contentType("application/json")
+                .contentType(MediaType.APPLICATION_JSON)
                 .content(requestBody));
 
-        // Act & Assert
         mockMvc.perform(get("/stats?password=super_secret"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.income", is(10)))
