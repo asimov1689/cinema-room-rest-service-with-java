@@ -20,7 +20,10 @@ class CinemaServiceTest {
 
     @Test
     void shouldReturnAllSeatsInitially() {
+        // Act
         SeatsResponseDto response = cinemaService.getSeats();
+
+        // Assert
         assertEquals(9, response.getRows());
         assertEquals(9, response.getColumns());
         assertEquals(81, response.getSeats().size());
@@ -28,7 +31,10 @@ class CinemaServiceTest {
 
     @Test
     void shouldReturnSeatsInRowMajorOrder() {
+        // Act
         List<SeatDto> seats = cinemaService.getSeats().getSeats();
+
+        // Assert
         assertEquals(1, seats.get(0).getRow());
         assertEquals(1, seats.get(0).getColumn());
         assertEquals(1, seats.get(1).getRow());
@@ -39,7 +45,10 @@ class CinemaServiceTest {
 
     @Test
     void shouldPurchaseTicketSuccessfully() {
+        // Act
         TicketResponseDto response = cinemaService.purchaseTicket(new PurchaseRequestDto(3, 4));
+
+        // Assert
         assertNotNull(response.getToken());
         SeatDto seat = response.getTicket();
         assertEquals(3, seat.getRow());
@@ -50,8 +59,11 @@ class CinemaServiceTest {
 
     @Test
     void shouldThrowExceptionWhenTicketAlreadyPurchased() {
+        // Arrange
         PurchaseRequestDto request = new PurchaseRequestDto(3, 4);
         cinemaService.purchaseTicket(request);
+
+        // Act & Assert
         IllegalArgumentException ex = assertThrows(
                 IllegalArgumentException.class,
                 () -> cinemaService.purchaseTicket(request)
@@ -61,6 +73,7 @@ class CinemaServiceTest {
 
     @Test
     void shouldThrowExceptionWhenRowIsOutOfBounds() {
+        // Act & Assert
         IllegalArgumentException ex = assertThrows(
                 IllegalArgumentException.class,
                 () -> cinemaService.purchaseTicket(new PurchaseRequestDto(10, 1))
@@ -70,6 +83,7 @@ class CinemaServiceTest {
 
     @Test
     void shouldThrowExceptionWhenColumnIsOutOfBounds() {
+        // Act & Assert
         IllegalArgumentException ex = assertThrows(
                 IllegalArgumentException.class,
                 () -> cinemaService.purchaseTicket(new PurchaseRequestDto(1, 10))
@@ -79,13 +93,19 @@ class CinemaServiceTest {
 
     @Test
     void shouldReturnTicketSuccessfully() {
+        // Arrange
         TicketResponseDto purchased = cinemaService.purchaseTicket(new PurchaseRequestDto(3, 4));
+
+        // Act
         cinemaService.returnTicket(new ReturnRequestDto(purchased.getToken()));
+
+        // Assert
         assertEquals(81, cinemaService.getSeats().getSeats().size());
     }
 
     @Test
     void shouldThrowExceptionWhenTokenIsWrong() {
+        // Act & Assert
         IllegalArgumentException ex = assertThrows(
                 IllegalArgumentException.class,
                 () -> cinemaService.returnTicket(new ReturnRequestDto(java.util.UUID.randomUUID()))
@@ -95,7 +115,10 @@ class CinemaServiceTest {
 
     @Test
     void shouldReturnInitialStatsWithCorrectPassword() {
+        // Act
         StatsResponseDto stats = cinemaService.getStats("super_secret");
+
+        // Assert
         assertEquals(0, stats.getIncome());
         assertEquals(81, stats.getAvailable());
         assertEquals(0, stats.getPurchased());
@@ -103,8 +126,13 @@ class CinemaServiceTest {
 
     @Test
     void shouldReturnUpdatedStatsAfterPurchases() {
+        // Arrange
         cinemaService.purchaseTicket(new PurchaseRequestDto(1, 1));
+
+        // Act
         StatsResponseDto stats = cinemaService.getStats("super_secret");
+
+        // Assert
         assertEquals(10, stats.getIncome());
         assertEquals(80, stats.getAvailable());
         assertEquals(1, stats.getPurchased());
@@ -112,6 +140,7 @@ class CinemaServiceTest {
 
     @Test
     void shouldThrowExceptionWhenPasswordIsWrong() {
+        // Act & Assert
         IllegalStateException ex = assertThrows(
                 IllegalStateException.class,
                 () -> cinemaService.getStats("wrong_password")
@@ -121,6 +150,7 @@ class CinemaServiceTest {
 
     @Test
     void shouldThrowExceptionWhenPasswordIsMissing() {
+        // Act & Assert
         IllegalStateException ex = assertThrows(
                 IllegalStateException.class,
                 () -> cinemaService.getStats(null)
