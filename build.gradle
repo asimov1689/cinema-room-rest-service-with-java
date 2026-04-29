@@ -49,7 +49,7 @@ subprojects {
     dependencies {
         implementation 'org.springframework.boot:spring-boot-starter-web'
         testImplementation 'org.springframework.boot:spring-boot-starter-test'
-        testImplementation 'com.github.hyperskill:hs-test:release-SNAPSHOT'
+        testImplementation 'com.github.hyperskill:hs-test:13.0.5'
     }
 
     configurations.all {
@@ -75,7 +75,7 @@ subprojects {
 
 project(':util') {
     dependencies {
-        implementation 'com.github.hyperskill:hs-test:release-SNAPSHOT'
+        implementation 'com.github.hyperskill:hs-test:13.0.5'
     }
 }
 
