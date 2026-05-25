@@ -23,14 +23,14 @@ public class CinemaService {
     private static final int TOTAL_COLUMNS = 9;
 
     // Override via CINEMA_STATS_PASSWORD env var in production
-    @Value("${cinema.stats.password:super_secret}")
-    private String statsPassword;
+    private final String statsPassword;
 
     private final List<SeatDto> availableSeats = new CopyOnWriteArrayList<>();
     private final Map<UUID, SeatDto> purchasedTickets = new ConcurrentHashMap<>();
     private final Object seatLock = new Object();
 
-    public CinemaService() {
+    public CinemaService(@Value("${cinema.stats.password:super_secret}") String statsPassword) {
+        this.statsPassword = statsPassword;
         for (int row = 1; row <= TOTAL_ROWS; row++) {
             for (int column = 1; column <= TOTAL_COLUMNS; column++) {
                 availableSeats.add(new SeatDto(row, column));
