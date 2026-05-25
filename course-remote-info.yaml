@@ -73,6 +73,8 @@ topics:
       theory_id: 7834
     - title: Postman
       theory_id: 8512
+    - title: "How the web works: clients, servers, and browsers"
+      theory_id: 52811
     - title: Introduction to Java
       theory_id: 38627
     - title: "Basic literals: numbers, strings and characters"
@@ -197,10 +199,10 @@ topics:
       theory_id: 21478
     - title: Multidimensional array
       theory_id: 1933
-    - title: Introduction to API
-      theory_id: 17007
     - title: JSON
       theory_id: 6854
+    - title: Introduction to API
+      theory_id: 17007
     - title: Getting data from REST
       theory_id: 13287
     - title: IntelliJ IDEA
