@@ -22,9 +22,9 @@ public class CinemaService {
     private static final int TOTAL_ROWS = 9;
     private static final int TOTAL_COLUMNS = 9;
 
-    // Loaded from application.properties; override via CINEMA_STATS_PASSWORD env var in production
+    // Override via CINEMA_STATS_PASSWORD env var in production
     @Value("${cinema.stats.password:super_secret}")
-    private String statsPassword = "super_secret";
+    private String statsPassword;
 
     private final List<SeatDto> availableSeats = new CopyOnWriteArrayList<>();
     private final Map<UUID, SeatDto> purchasedTickets = new ConcurrentHashMap<>();
