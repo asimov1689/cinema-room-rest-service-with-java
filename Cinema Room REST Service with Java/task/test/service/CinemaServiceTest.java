@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class CinemaServiceTest {
 
-    private final CinemaService cinemaService = new CinemaService();
+    private final CinemaService cinemaService = new CinemaService("super_secret");
 
     @Test
     void shouldReturnAllSeatsInitially() {
