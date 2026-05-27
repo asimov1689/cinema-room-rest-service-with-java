@@ -1,6 +1,0 @@
-custom_name: Thread synchronization
-content:
-  - Thread synchronization
-  - Account implementation
-  - Thread safe counter
-  - Thread safe down counter
